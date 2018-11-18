@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'cn.ycl'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()//中央库使用maven中央库
+}
+//引入依赖
+dependencies {
+    // netty
+    compile ("io.netty:netty-all:4.1.31.Final")
+
+}
