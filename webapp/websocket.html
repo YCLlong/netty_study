@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户端</title>
+</head>
+<body>
+
+<form onsubmit="return false;">
+    <textarea rows="10" cols="100" name="msg" id = "msg" ></textarea>
+    <input type="button" value="发送数据" onclick="send()">
+    <hr/>
+    来自服务器的数据<br/>
+    <textarea rows="15" cols="100" name="receive" id = "receive"></textarea>
+</form>
+<script type="text/javascript">
+    var socket;
+
+    //如果浏览器支持webSocket
+    if(window.WebSocket){
+        //服务器端websocket连接地址
+        socket = new WebSocket("ws://127.0.0.1:8090/ycl")
+
+        //连接开启时触发
+        socket.onopen = function (event) {
+            var his = document.getElementById("receive").value;
+            document.getElementById("receive").value = his  + "\nwebSocket连接已经建立";
+        }
+
+        //连接关闭时触发
+        socket.onclose = function (event) {
+            var his = document.getElementById("receive").value;
+            document.getElementById("receive").value = his  + "\nwebSocket连接已经断开";
+        }
+
+        //接收到消息时触发
+        socket.onmessage = function (event) {
+            var his = document.getElementById("receive").value;
+            document.getElementById("receive").value = his  + "\n收到服务器消息："+ event.data;
+        }
+
+        //发生错误时触发
+        socket.onerror = function (event) {
+            var his = document.getElementById("receive").value;
+            document.getElementById("receive").value = his  + "\n 发生错误";
+        }
+    }else {
+        alert("浏览器不支持WebSockt");
+    }
+
+
+    //自定义发送消息方法
+    function send() {
+        if(!window.WebSocket){
+            //不支持webSocket直接返回
+            return;
+        }
+        var msg =  document.getElementById('msg').value;
+        if(socket.readyState == WebSocket.OPEN){
+            socket.send(msg);
+        }else {
+            alert("连接尚未开启");
+        }
+    }
+</script>
+</body>
+</html>

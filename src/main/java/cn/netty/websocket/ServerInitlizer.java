@@ -16,8 +16,7 @@ public class ServerInitlizer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new ChunkedWriteHandler());//不知道
         pipeline.addLast(new HttpObjectAggregator(8192));//不知道
         //ws:host:port/webSocketPath
-        pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));//websocket协议处理
-
-
+        pipeline.addLast(new WebSocketServerProtocolHandler("/ycl"));//websocket协议处理
+        pipeline.addLast(new TextFrameHandle());
     }
 }
