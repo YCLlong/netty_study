@@ -15,6 +15,9 @@ repositories {
 //引入依赖
 dependencies {
     // netty
-    compile ("io.netty:netty-all:4.1.31.Final")
-
+    compile (
+            "io.netty:netty-all:4.1.31.Final",
+            "com.google.protobuf:protobuf-java:3.6.1",
+            "com.google.protobuf:protobuf-java-util:3.6.1"
+    )
 }
