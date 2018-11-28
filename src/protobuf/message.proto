@@ -1,0 +1,38 @@
+syntax = "proto2";
+package com.netty.protobuf.proto;
+
+option optimize_for = SPEED;
+option java_package = "cn.netty.protobuf.proto";
+option java_outer_classname = "DataInfo";
+
+message myMessage{
+    enum DataType{
+        StudentType = 1;
+        PersonType = 2;
+        EngineerType = 3;
+    }
+
+    required DataType data_type = 1;
+
+    oneof DataBodey{
+        Student student= 2;
+        Persion persion = 3;
+        Engineer engineer = 4;
+    }
+}
+
+message Student {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Persion{
+    required string name = 1;
+    optional string company = 2;
+}
+
+message Engineer{
+    required string name = 1;
+    optional string code = 2;
+}

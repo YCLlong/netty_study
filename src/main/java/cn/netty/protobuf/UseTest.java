@@ -1,7 +1,7 @@
-package com.netty.protobuf;
+package cn.netty.protobuf;
 
+import cn.netty.protobuf.proto.DataInfo;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.netty.protobuf.proto.DataInfo;
 
 import java.util.Arrays;
 
